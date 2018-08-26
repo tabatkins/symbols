@@ -1,0 +1,228 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, user-scalable=no">
+<title>Symbololology</title>
+<link href='http://fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
+<script>
+var chars = {
+	"Punctuation":[
+		["…","¿","¡","‽","¦","⁄","‘","’","“","”","«","»","‹","›","¶","§","†","‡","·","–","—","•","◦","●","‣"],
+	],
+	"Accents, ligatures & dipthongs":[
+		["ä","à","á","â","ã","å","ç","ć","ĉ","è","é","ê","ë","ì","í","î","ï","ñ","ö","ò","ó","ô","õ","ś","ŝ","ü","ù","ú","û","ũ","ÿ","ﬀ","ﬃ","ﬄ","ﬁ","ﬂ","ﬆ","ß","æ","œ","ɶ","ᵫ","ø"],
+		["Ä","À","Á","Â","Ã","Å","Ç","Ć","Ĉ","È","É","Ê","Ë","Ì","Í","Î","Ï","Ñ","Ö","Ò","Ó","Ô","Õ","Ś","Ŝ","Ü","Ù","Ú","Û","Ũ","Ÿ","Æ","Œ","Ø"],
+		],
+	"Maths, numbers & units":[
+		["≈","≠","√","∛","∜","∴","−","÷","×","±","∓","∞","°","µ","‰","‱","′","″","‴","∅","№"],
+		["¼","½","¾","⅓","⅔","⅕","⅖","⅗","⅘","⅙","⅚","⅛","⅜","⅝","⅞"],
+		["¹","²","³","⁴","⁵","⁶","⁷","⁸","⁹","⁰","⁺","⁻","⁼","⁽","⁾","ª","ⁱ","ⁿ"],
+		["₁","₂","₃","₄","₅","₆","₇","₈","₉","₀","⏨","₊","₋","₌","₍","₎"],
+		["➀","➁","➂","➃","➄","➅","➆","➇","➈","⓪","➉"],
+		["➊","➋","➌","➍","➎","➏","➐","➑","➒","⓿","➓"],
+	],
+	"Emoticons, decoration, UI & miscellaneous ":[
+		["☰","✓","✔","✗","✘","✎","✈","✂","⚑","⚐","♂","♀","☠","☑","☒","⚡","❄","☀","☽","☂","★","☆","☁","☻","☹","☺","⊕","⊖","⊗","⊘","⊙","⌁","⌘","◔","◕","♠","♣","♥","♦","♡","☯","☮","☢","☙","❧","⌦","⌦","♩","♫","⍟","☎"],
+	],
+	"Currency & commercial symbols":[
+		["¤","¢","£","¥","€","© ","®","™","℮","♺"],
+	],
+	"Arrows & shapes":[
+		["↵","←","↑","→","↓","↔","↕","↖","↗","↘","↙","⟲","⟳","↺","↻","⇄","⇅","↩","↪","▲","△","▶","▷","▼","▽","◀","◁","◯","◼","◻","◆","◇","▢"],
+	],
+	"Greek":[
+		["α","β","γ","δ","ε","ζ","η","θ","ι","κ","λ","μ","ν","ξ","ο","π","ρ","ς","σ","τ","υ","φ","χ","ψ","ω"],
+		["Α","Β","Γ","Δ","Ε","Ζ","Η","Θ","Ι","Κ","Λ","Μ","Ν","Ξ","Ο","Π","Ρ","Σ","Τ","Υ","Φ","Χ","Ψ","Ω"],
+	],
+}
+</script>
+
+<header>
+	<h1>Symbololology</h1>
+	<p id=last-char></p>
+</header>
+<article>
+	<div id=chars></div>
+	<hr id="end">
+	<p><small>Overall site design blatantly stolen from <a href="http://notonyourkeyboard.com/">NotOnYourKeyboard</a>. Code more or less completely rewritten fresh.</small>
+</article>
+
+<style>
+html {
+	background-color:#fefefe;
+	color:#5c5c5c;
+	font-family:lato, calibri, helvetica, verdana, arial, sans-serif;
+	height: 100%;
+}
+body {
+	display: grid;
+	grid-template-rows: auto minmax(0,1fr);
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+header {
+	background-color:#4a4a4a;
+	background-image: linear-gradient(to bottom, #C20047 0%, #C2001D 100%);
+	background-clip: padding-box;
+	background-origin: padding-box;
+	padding:0 3em;
+	border-bottom: 4px solid rgba(0,0,0,.3);
+	grid-row: 1;
+	display: flex;
+}
+header h1 {
+	color:#f1f1f1;
+	font-weight:normal;
+	text-shadow: 0px 0px 3px rgba(241, 241, 241, 1);
+	font-size:2em;
+	margin: .5em 0;
+	flex: none;
+}
+header #last-char {
+	margin: 0 0 0 auto;
+	color: #f1f1f1;
+	font-size: 2em;
+	align-self: center;
+	max-height: 2em;
+}
+header #last-char > a {
+	color: #f1f1f1;
+}
+article {
+	padding: 0 3em;
+	grid-row: 2;
+	min-height: 0;
+	overflow: auto;
+}
+h2 {
+	font-size: 1.2em;
+	font-weight:normal;
+}
+ul {
+	display: flex;
+	flex-flow: row wrap;
+	margin: 0;
+}
+li {
+	flex: none;
+	list-style:none;
+	vertical-align:middle;
+	font-family:arial unicode, consolas, sans-serif;
+}
+input {
+	font-size:1.6em;
+	box-shadow:4px 4px rgba(0,0,0,0.5);
+	border: none;
+	margin:5px;
+	width:40px;
+	height:40px;
+	text-align:center;
+	background-color:#ededed;
+	outline:none;
+	display:block;
+	position:relative;
+	z-index:1;
+	cursor:pointer;
+	transition-property: background-color, z-index, transform;
+	transition-duration: .3s;
+	color:#43425E;
+	text-shadow: 0px 0px 3px rgba(204, 204, 204, 1);
+}
+input:focus, input.selected {
+	transform-origin: center;
+	transform: scale(2);
+	z-index:10;
+	background-color: #C2F5A4;
+}
+#end {
+	border: none;
+}
+#end::before {
+	content: "❧";
+	display: block;
+	text-align:center;
+	width:100%;
+	font-size:4em;
+	color:#C7C7C7
+}
+</style>
+
+<script>
+var cleanUpTimeout;
+
+function find(sel) {
+	return document.querySelector(sel);
+}
+
+function findAll(sel) {
+	return [...document.querySelectorAll(sel)];
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+	buildUI(chars);
+	find("body").addEventListener("click", UIClickHandler);
+	displayHash();
+});
+window.addEventListener("hashchange", displayHash);
+
+function displayHash() {
+	var cp = parseInt(window.location.hash.slice(1), 16);
+	if(cp) {
+		logChar(String.fromCodePoint(cp));
+	}
+}
+
+function UIClickHandler(e) {
+	cleanup();
+	var el = e.target ? e.target : e;
+	var clickedChar = null;
+	if (el.tagName == "INPUT") {
+		clickedChar = el.value;
+		el.classList.add("selected");
+		navigator.clipboard.writeText(clickedChar);
+		logChar(clickedChar);
+		cleanUpTimeout = window.setTimeout(cleanup, 8000);
+	}
+}
+
+function buildUI(chars) {
+	const charsContainer = find("#chars");
+	for (const [title, rows] of Object.entries(chars)) {
+		const sectionTitleEl = document.createElement("h2");
+		sectionTitleEl.innerHTML = title;
+		charsContainer.appendChild(sectionTitleEl);
+		rows.forEach(row=>charsContainer.appendChild(makeCharRow(row)));
+	}
+}
+
+function makeCharRow(row) {
+	const rowContainer = document.createElement("ul");
+	row.forEach(char=>rowContainer.appendChild(createLi(char)));
+	return rowContainer;
+}
+
+function createLi(c) {
+	var li = document.createElement("li");
+	li.classList.add("char");
+	var el = document.createElement("input");
+	el.readOnly = true;
+	el.value = c;
+	el.type = "text";
+	li.appendChild(el);
+	return li;
+}
+
+function cleanup() {
+	findAll(".selected").forEach(x=>x.classList.remove("selected"));
+	findAll("label").forEach(x=>x.parentNode.removeChild(x));
+	window.clearTimeout(cleanUpTimeout);
+}
+
+function logChar(c) {
+	var cp = c.codePointAt(0).toString(16).padStart(4, "0").toUpperCase();
+	var url = `http://www.fileformat.info/info/unicode/char/${cp}/`;
+	console.log(`${c} = U+${cp} ${url}`);
+	find("#last-char").innerHTML = `${c} = <a href="${url}index.htm">U+${cp}</a>`;
+	window.location.hash = cp;
+}
+</script>

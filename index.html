@@ -200,10 +200,20 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 window.addEventListener("hashchange", displayHash);
 
+function blurChar() {
+	findAll(":focus").map(x=>x.blur());
+}
+function focusChar(char) {
+	findAll(`input[value="${char}"`).map(x=>x.focus());
+}
+
 function displayHash() {
 	var cp = parseInt(window.location.hash.slice(1), 16);
 	if(cp) {
-		logChar(String.fromCodePoint(cp));
+		blurChar();
+		const char = String.fromCodePoint(cp);
+		logChar(char);
+		focusChar(char);
 	}
 }
 

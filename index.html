@@ -195,7 +195,7 @@ function append(el, ...children) {
 
 document.addEventListener("DOMContentLoaded", function() {
 	buildUI(chars);
-	document.body.addEventListener("focusin", UIClickHandler);
+	document.body.addEventListener("focusin", selectChar);
 	displayHash();
 });
 window.addEventListener("hashchange", displayHash);
@@ -217,7 +217,7 @@ function displayHash() {
 	}
 }
 
-function UIClickHandler(e) {
+function selectChar(e) {
 	var el = e.target ? e.target : e;
 	var clickedChar = null;
 	if (el.tagName == "INPUT") {

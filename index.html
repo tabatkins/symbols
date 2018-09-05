@@ -195,7 +195,7 @@ function append(el, ...children) {
 
 document.addEventListener("DOMContentLoaded", function() {
 	buildUI(chars);
-	find("body").addEventListener("click", UIClickHandler);
+	document.body.addEventListener("focusin", UIClickHandler);
 	displayHash();
 });
 window.addEventListener("hashchange", displayHash);

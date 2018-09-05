@@ -149,12 +149,51 @@ input:focus, input.selected {
 <script>
 var cleanUpTimeout;
 
-function find(sel) {
-	return document.querySelector(sel);
+function find(sel) { return document.querySelector(sel); }
+function findAll(sel) { return [...document.querySelectorAll(sel)]; }
+function isString(obj) { return (typeof obj == "string") || (obj instanceof String); }
+function iter(obj) {
+	if(!obj) return [];
+	var it = obj[Symbol.iterator];
+	if(it) return it;
+	return Object.entries(obj);
 }
-
-function findAll(sel) {
-	return [...document.querySelectorAll(sel)];
+Object.prototype.map = function(cb) {
+	var i = 0;
+	var ret = [];
+	for(var el of iter(this)) {
+		ret.push(cb(el, i, this));
+	}
+	return ret;
+}
+function mk(tagname, attrs, ...children) {
+	const el = document.createElement(tagname);
+	for(const [k,v] of iter(attrs)) {
+		if(k[0] == "_") {
+			// property, not attribute
+			el[k.slice(1)] = v;
+		} else {
+			el.setAttribute(k, v);
+		}
+	}
+	append(el, children);
+	return el;
+}
+function append(el, ...children) {
+	const appendChild = (container, child) => {
+		if(container instanceof Node) container.appendChild(child);
+		else container.push(child);
+	}
+	for(const child of children) {
+		if(child instanceof Node) {
+			appendChild(el, child);
+		} else if(Array.isArray(child)) {
+			append(el, ...child);
+		} else {
+			appendChild(el, new Text(child));
+		}
+	}
+	return el;
 }
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -186,28 +225,27 @@ function UIClickHandler(e) {
 
 function buildUI(chars) {
 	const charsContainer = find("#chars");
-	for (const [title, rows] of Object.entries(chars)) {
-		const sectionTitleEl = document.createElement("h2");
-		sectionTitleEl.innerHTML = title;
-		charsContainer.appendChild(sectionTitleEl);
-		rows.forEach(row=>charsContainer.appendChild(makeCharRow(row)));
-	}
+	charsContainer.innerHTML = "";
+	append(charsContainer,
+		...chars.map(([title, rows])=>
+			mk("section", {},
+				mk("h2", {_innerHTML: title}),
+				...rows.map(makeCharRow)
+			)
+		)
+	)
 }
 
 function makeCharRow(row) {
-	const rowContainer = document.createElement("ul");
-	row.forEach(char=>rowContainer.appendChild(createLi(char)));
-	return rowContainer;
+	return mk("ul", {}, ...row.map(createLi));
 }
 
 function createLi(c) {
-	var li = document.createElement("li");
-	li.classList.add("char");
-	var el = document.createElement("input");
-	el.readOnly = true;
-	el.value = c;
-	el.type = "text";
-	li.appendChild(el);
+	var li = mk("li", {"class":"char"});
+	if(c) {
+		append(li, mk("input", {_readonly:true, _value:c, type:"text"}));
+	} else {
+	}
 	return li;
 }
 

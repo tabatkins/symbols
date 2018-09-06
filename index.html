@@ -32,6 +32,9 @@ var chars = {
 		["α","β","γ","δ","ε","ζ","η","θ","ι","κ","λ","μ","ν","ξ","ο","π","ρ","ς","σ","τ","υ","φ","χ","ψ","ω"],
 		["Α","Β","Γ","Δ","Ε","Ζ","Η","Θ","Ι","Κ","Λ","Μ","Ν","Ξ","Ο","Π","Ρ","Σ",null,"Τ","Υ","Φ","Χ","Ψ","Ω"],
 	],
+	"International Phonetic Alphabet":[
+		[[0x250, 0x2af]]
+	]
 }
 </script>
 
@@ -246,10 +249,24 @@ function makeCharRow(row) {
 }
 
 function createLi(c) {
-	if(c) {
+	if(Array.isArray(c) && c.length == 2) {
+		return [...range(...c)].map(x=>String.fromCodePoint(x)).map(createLi);
+	} else if(c) {
 		return mk("input", {"class":"char", readonly:"", value:c, size:1});
 	} else {
 		return mk("span", {"class":"spacer"});
+	}
+}
+
+function* range(start, stop) {
+	if(start < stop) {
+		for(var i = start; i <= stop; i++) {
+			yield i;
+		}
+	} else {
+		for(var i = start; i >= stop; i--) {
+			yield i;
+		}
 	}
 }
 

@@ -3,6 +3,12 @@
 <meta name="viewport" content="width=device-width, user-scalable=no">
 <title>Symbololology</title>
 <script>
+/*
+	Top-level keys are headings.
+	Values are arrays of arrays, representing rows of characters.
+	Use null to indicate a gap, for aligning across rows.
+	Only single-codepoint chars allowed. Code currently doesn't handle grapheme clusters.
+*/
 var chars = {
 	"Punctuation":[
 		["…","¿","¡","‽","¦","⁄","‘","’","“","”","«","»","‹","›","¶","§","†","‡","·","–","—","•","◦","●","‣","🔶"],

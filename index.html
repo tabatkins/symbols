@@ -238,7 +238,11 @@ function selectChar(e) {
 	if (el.tagName == "INPUT") {
 		clickedChar = el.value;
 		el.focus();
-		navigator.clipboard.writeText(clickedChar);
+		if (navigator.clipboard) {
+			navigator.clipboard.writeText(clickedChar);
+		} else {
+			console.warn('Cannot copy to clipboard');
+		}
 		logChar(clickedChar);
 	}
 }

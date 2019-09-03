@@ -72,9 +72,6 @@ html {
 	height: 100%;
 }
 body {
-	display: grid;
-	grid-template-rows: auto minmax(0,1fr);
-	height: 100%;
 	margin: 0;
 	padding: 0;
 }
@@ -85,8 +82,10 @@ header {
 	background-origin: padding-box;
 	padding:0 3em;
 	border-bottom: 4px solid rgba(0,0,0,.3);
-	grid-row: 1;
 	display: flex;
+	position: sticky;
+	top: 0px;
+	z-index: 20;
 }
 header h1 {
 	color:#f1f1f1;
@@ -108,9 +107,6 @@ header h1 {
 }
 article {
 	padding: 0 3em;
-	grid-row: 2;
-	min-height: 0;
-	overflow: auto;
 }
 h2 {
 	font-size: 1.2em;

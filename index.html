@@ -279,7 +279,13 @@ function createLi(c) {
 	if(Array.isArray(c) && c.length == 2) {
 		return [...range(...c)].map(x=>String.fromCodePoint(x)).map(createLi);
 	} else if(c) {
-		return mk("input", {"class":"char", readonly:"", value:c, size:1});
+		return mk("input", {
+			"class":"char",
+			readonly:"",
+			value:c,
+			size:1,
+			title: "U+" + c.codePointAt(0).toString(16).padStart(4, "0"),
+		});
 	} else {
 		return mk("span", {"class":"spacer"});
 	}

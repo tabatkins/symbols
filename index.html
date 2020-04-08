@@ -4,10 +4,9 @@
 <title>Symbololology</title>
 <script>
 /*
-	Top-level keys are headings.
-	Values are arrays of arrays, representing rows of characters.
-	Use null to indicate a gap, for aligning across rows.
-	Only single-codepoint chars allowed. Code currently doesn't handle grapheme clusters.
+	Top-level object is {heading:[rows]}.
+	Each row is an array, containing either 1+ strings (or null for a gap, for cross-row alignment),
+	or a 2-value array containing a start and end codepoint, to compactly represent ranges.
 */
 var chars = {
 	"Punctuation":[
